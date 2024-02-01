@@ -6,7 +6,7 @@
 
 ```bash
 [Unit]
-   Description=alertmanager service
+Description=alertmanager service
 [Service]
 ExecStart=/usr/local/alertmanager/alertmanager --config.file alertmanager.yml --cluster.listen-address 192.168.6.42:8001 --cluster.peer 192.168.6.41:8001
 ExecReload=/bin/kill -HUP $MAINPID
