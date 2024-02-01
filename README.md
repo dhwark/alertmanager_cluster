@@ -4,7 +4,7 @@
 
 2. 修改roles\alertmanager_cluster\files\am1\alertmanager.service中的配置项：
 
-   ```bash
+```bash
 [Unit]
    Description=alertmanager service
 [Service]
