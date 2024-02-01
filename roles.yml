@@ -1,0 +1,4 @@
+---
+- hosts: all
+  roles:
+    - alertmanager_cluster

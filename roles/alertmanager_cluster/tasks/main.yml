@@ -1,0 +1,43 @@
+---
+
+- name: mkdir
+  shell: "mkdir -p /usr/local/alertmanager"
+
+- name: copy
+  copy:
+    src: '{{ role_path }}/files/alertmanager/{{ item }}'
+    dest: '/usr/local/alertmanager'
+  with_items:
+    - 'alertmanager'
+    - 'amtool'
+
+- name: file
+  file:
+    path: "/usr/local/alertmanager/{{ item }}"
+    mode: "0755"
+  with_items:
+    - 'alertmanager'
+    - 'amtool'
+
+- name: copy config files
+  copy:
+    src: 'files/alertmanager.yml'
+    dest: '/usr/local/alertmanager/'
+
+- name: copy systemd config files for groups
+  copy:
+    src: 'files/{{ item }}/alertmanager.service'
+    dest: '/usr/lib/systemd/system/'
+  with_items:
+    - am1
+    - am2
+    - am3
+  when: inventory_hostname in groups[item]
+
+- name: start alertmanager service
+  systemd:
+    name: alertmanager
+    state: started
+    enabled: yes
+    daemon_reload: yes
+

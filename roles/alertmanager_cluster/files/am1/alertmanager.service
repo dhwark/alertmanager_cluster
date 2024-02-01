@@ -1,0 +1,9 @@
+[Unit]
+Description=alertmanager service
+[Service]
+ExecStart=/usr/local/alertmanager/alertmanager --config.file /usr/local/alertmanager/alertmanager.yml --cluster.listen-address 192.168.6.41:8001
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target
