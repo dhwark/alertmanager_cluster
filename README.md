@@ -19,5 +19,4 @@ WantedBy=multi-user.target
 --cluster.listen-address是本机alertmanager的监听地址，--cluster.peer是集群master的地址
 
 4. 进入master的ui界面，查看集群是否正常启动
-
 ![](images/20240201235610.png)
